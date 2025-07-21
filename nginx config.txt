@@ -1,6 +1,6 @@
 server {
 	listen 80;
-	server_name 13.36.39.40;
+	server_name ServerIpAdress;
 
 	root /var/www/html/stock-app/public;
 	index index.php index.html index.htm;
