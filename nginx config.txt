@@ -1,0 +1,26 @@
+server {
+	listen 80;
+	server_name 13.36.39.40;
+
+	root /var/www/html/stock-app/public;
+	index index.php index.html index.htm;
+
+	location / {
+		try_files $uri $uri/ /index.php?$query_string;
+	}
+
+	location ~ \.php$ {
+		include fastcgi_params;
+		fastcgi_pass unix:/run/php/php8.3-fpm.sock; 
+		fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+		fastcgi_param DOCUMENT_ROOT $document_root;
+	}
+
+	location ~ /\.ht {
+        deny all;
+    }
+
+    error_log /var/log/nginx/sumundi-gold-register-be-error.log;
+    access_log /var/log/nginx/sumundi-gold-register-be-access.log;
+
+}
