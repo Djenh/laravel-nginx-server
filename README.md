@@ -71,6 +71,7 @@ Copy the content (in your clipboard).
 Go to **`Gitlab -> Edit Profile -> SSH keys -> New SSH key`**
 
 Paste the public key into the **`Key`** field, provide a descriptive title, and click "Add SSH key".
+
 Now you can clone the project
 ``` console
 cd /var/www/html
@@ -124,7 +125,7 @@ Check the Nginx syntax by typing
 nginx -t
 ```
 
-Enable and restrat Nginx server
+Enable and restart Nginx server
 
 ``` console
 systemctl enable nginx
