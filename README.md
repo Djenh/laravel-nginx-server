@@ -71,6 +71,12 @@ Copy the content (in your clipboard).
 Go to **`Gitlab -> Edit Profile -> SSH keys -> New SSH key`**
 
 Paste the public key into the **`Key`** field, provide a descriptive title, and click "Add SSH key".
+Now you can clone the project
+``` console
+cd /var/www/html
+
+git clone git@gitlab.com:yourName/YourProject.git
+```
 
 
 ### **Step 4: Set up required permission for project**
@@ -103,7 +109,7 @@ Copy the content of the nginx config file in my Github repository, paste it and 
 
 Now you need to tell Nginx to point your web application instead of default page.
 ``` console
-cd/etc/nginx/
+cd /etc/nginx/
 
 nano nginx.conf
 ```
