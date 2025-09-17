@@ -229,3 +229,42 @@ npm run build
 
 Open a web browser and go to your server public IP address by using only HTTP not HTTPS (as the SSL is not yet configured on the server).
 
+
+### **Step 8: Install SSL certificate**
+You can add a certificate to your domain name using Certbot (Let's Encrypt).
+
+- Install Certbot with command
+``` console
+sudo apt install certbot python3-certbot-nginx
+```
+
+- Get the SSL certificate to your domain
+``` console
+sudo certbot --nginx -d your_domain.com -d www.your_domain.com
+```
+- Enter an email address for renewal and security notices.
+- Agree to the terms of service.
+- Specify whether to receive emails from EFF.
+- If prompted, choose whether to redirect HTTP traffic to HTTPS : 1 (no redirect, no further changes to the server) or 2 (redirect all HTTP requests to HTTPS).
+
+
+- In your domain config file for nginx, add the following lines. 
+For example in your **`/etc/nginx/conf.d/your_domain.conf`**
+``` console
+listen 443 ssl;
+ssl_certificate /etc/letsencrypt/live/your_domain.com/fullchain.pem; 
+ssl_certificate_key /etc/letsencrypt/live/your_domain.com/privkey.pem; 
+include /etc/letsencrypt/options-ssl-nginx.conf;
+ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+```
+
+- Check Nginx and restart it
+``` console
+sudo nginx -t
+sudo systemctl restart nginx
+```
+
+- Ensure the renewal process works
+``` console
+sudo certbot renew --dry-run
+```
