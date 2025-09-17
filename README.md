@@ -1,5 +1,5 @@
 
-## Steps to deploy a Laravel application on AWS / Ubuntu server
+## Step-by-step to deploy a Laravel application on AWS / Ubuntu server
 You want to deploy your Laravel application on AWS EC2 instance/Ubuntu server using NGINX server, here are steps to follow. 
 
 ### **Prerequisites**
@@ -37,23 +37,41 @@ apt install zip unzip
 ```
 
 ``` console
+apt install composer
+```
+
+Install NodeJS and its Pacakge Manager npm
+``` console
 apt install nodejs npm
 ```
 
-``` console
-apt install composer
-```
 
 Install Git
 ``` console
 apt install git
 ```
 
+
 Check the version of Nginx and PHP
 ``` console
 nginx -v
+node -v
+npm -v
 php -v
 ```
+
+Install Process Manager 2 pm2
+``` console
+npm install pm2 -g
+```
+
+``` console
+ pm2 --version
+```
+
+> [!NOTE]  
+> Process Manager 2 (pm2), is an open-source production process manager for Node.js and other languages that keeps applications alive indefinitely, manages them with a dashboard and CLI, and includes features like load balancing, automatic restarts, zero-downtime reloads, and real-time performance monitoring. It runs as a background daemon to ensure applications are available 24/7 and handles common DevOps tasks, making it easier to deploy and maintain Node.js applications
+
 
 ### **Step 3: Clone the app project on server from Git**
 In your server SSH terminal, type following commands:  
@@ -70,8 +88,12 @@ To have access rights to Git repository, you need to add SSH keys on server and 
 * In your server SSH terminal, generate a key pair by running the following command
 
 ``` console
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
+
+When terminal prompt file name, just type "Enter". Also type "Enter" for no passphrase. If, you want to add a
+passphrase, type it in terminal and confirm it.
+
 
 * Locate the public key, find the public key file (usually ~/.ssh/id_rsa.pub or the filename you specified). Copy the public key by opening the file and copy the entire content.
 ``` console
@@ -112,6 +134,12 @@ chmod -R 775 /var/www/html/stock-app/
 
 > [!IMPORTANT]  
 > **`www-data`** represents the user and group used by Nginx to execute files of your project. So if this Nginx's user doesn't have the right permissions, your web application won't be executed.
+
+If you don't currently know the right user of Nginx, simply type the commande using the variable **`$USER:$USER`**
+
+``` console
+chown -R $USER:$USER /var/www/html/stock-app/
+```
 
 
 
