@@ -135,7 +135,7 @@ chmod -R 775 /var/www/html/stock-app/
 > [!IMPORTANT]  
 > **`www-data`** represents the user and group used by Nginx to execute files of your project. So if this Nginx's user doesn't have the right permissions, your web application won't be executed.
 
-If you don't currently know the right user of Nginx, simply type the commande using the variable **`$USER:$USER`**
+If you don't currently know the right user of Nginx, simply type the command using the variable **`$USER:$USER`**
 
 ``` console
 chown -R $USER:$USER /var/www/html/stock-app/
