@@ -19,7 +19,7 @@ sudo su
 ```
 
 ``` console
-apt update
+apt update && apt upgrade -y
 ```
 
 Install Nginx
