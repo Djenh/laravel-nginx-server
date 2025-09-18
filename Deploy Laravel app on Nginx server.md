@@ -40,9 +40,31 @@ apt install zip unzip
 apt install composer
 ```
 
-Install NodeJS and its Pacakge Manager npm
+Install NodeJS and its Pacakge Manager npm using NVM (Node Version Manager)
 ``` console
-apt install nodejs npm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+```
+
+After that, reload the shell so nvm is available:
+
+``` console
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+```
+Then verify the version
+``` console
+nvm --version
+```
+
+Now install node.js
+``` console
+nvm install 22
+```
+
+Check the version
+``` console
+node -v
+npm -v
 ```
 
 
